@@ -21,7 +21,8 @@ public class ControllerJogo {
         return jogo.getJogadorAtual();
     }
 
-    public boolean isPlacingPhase() {
-        return jogo.ehFaseDeColocacaoe();
+    public boolean ehFaseDeColocacao() {
+        return jogo.ehFaseDeColocacao();
     }
 }
+
