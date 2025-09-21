@@ -92,7 +92,7 @@ public class Jogo extends Observado<Jogo> {
         jogadorAtual = jogadorAtual.opposite();
     }
 
-    public boolean ehFaseDeColocacaoe() {
+    public boolean ehFaseDeColocacao() {
         return faseDeColocacao;
     }
 
@@ -104,3 +104,4 @@ public class Jogo extends Observado<Jogo> {
         return jogadorAtual;
     }
 }
+
