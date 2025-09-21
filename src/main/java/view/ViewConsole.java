@@ -15,7 +15,7 @@ public class ViewConsole implements Observador<Jogo> {
 
     public void iniciar() {
         Scanner s = new Scanner(System.in);
-        while (controller.isPlacingPhase()) {
+        while (controller.ehFaseDeColocacao()) {
             System.out.println("Jogador atual: " + controller.getJogadorAtual());
             System.out.print("Linha: ");
             int lin = s.nextInt();
@@ -34,3 +34,4 @@ public class ViewConsole implements Observador<Jogo> {
         jogo.getTabuleiro().exibirTabuleiro();
     }
 }
+
