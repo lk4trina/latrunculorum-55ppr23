@@ -1,0 +1,11 @@
+model\Tabuleiro.class
+controller\Observador.class
+model\Jogo.class
+view\ViewConsole.class
+view\ViewPrincipal.class
+controller\Observado.class
+model\PecaTipo.class
+model\Peca.class
+model\Posicao.class
+controller\ControllerJogo.class
+model\Jogador.class
