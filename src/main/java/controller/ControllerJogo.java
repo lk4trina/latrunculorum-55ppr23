@@ -24,5 +24,13 @@ public class ControllerJogo {
     public boolean ehFaseDeColocacao() {
         return jogo.ehFaseDeColocacao();
     }
+
+    public void iniciarJogo() {
+        jogo.notifObservadores(jogo);
+    }
+
+    public int getTamanhoTabuleiro() {
+        return jogo.getTabuleiro().getTamanho();
+    }
 }
 
