@@ -5,12 +5,13 @@ import model.*;
 import controller.Observador;
 
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 
 public class LatrunculoView implements Observador<Jogo> {
 
@@ -53,9 +54,13 @@ public class LatrunculoView implements Observador<Jogo> {
                 StackPane celula = new StackPane();
                 celula.setMinSize(60, 60);
 
-                // CORES DO TABULEIRO: Estilo Mármore/Pedra Romana
-                String cor = ((lin + col) % 2 == 0) ? "#C19A6B" : "#8B4513"; // Tan e Marrom Escuro
-                celula.setStyle("-fx-background-color: " + cor + ";");
+                Rectangle fundo = new Rectangle(60, 60);
+                fundo.setFill(Color.BISQUE);
+                fundo.setStroke(Color.BLACK);
+                fundo.setStrokeWidth(1);
+
+                celula.getChildren().add(fundo);
+                celula.getStyleClass().add("cell");
 
                 final int finalLin = lin;
                 final int finalCol = col;
@@ -74,11 +79,14 @@ public class LatrunculoView implements Observador<Jogo> {
             criarTabuleiroInicial(tamanho);
         }
 
-        labelJogadorAtual.setText(jogo.getJogadorAtual().toString());
-        labelFase.setText(jogo.ehFaseDeColocacao() ? "Colocação" : "Movimento");
-        labelMensagem.setText(jogo.ehFaseDeColocacao() ?
-                "Fase de Colocação. Jogador " + jogo.getJogadorAtual() + ", clique para colocar." :
-                "Fase de Movimento. Selecione uma peça para mover."
+        String nomeJogador = (jogo.getJogadorAtual() == Jogador.BRANCO) ? "Branco" : "Marrom";
+        labelJogadorAtual.setText("Jogador Atual: " + nomeJogador);
+
+        labelFase.setText(jogo.ehFaseDeColocacao() ? "Fase: Colocação" : "Fase: Movimento");
+        labelMensagem.setText(
+                jogo.ehFaseDeColocacao()
+                        ? "Coloque sua peça no tabuleiro."
+                        : "Selecione e mova uma peça."
         );
 
         for (int lin = 0; lin < tamanho; lin++) {
@@ -89,37 +97,40 @@ public class LatrunculoView implements Observador<Jogo> {
                 StackPane celula = (StackPane) getNodeByRowColumnIndex(lin, col, tabuleiroGrid);
                 if (celula == null) continue;
 
+                javafx.scene.Node fundo = celula.getChildren().get(0);
                 celula.getChildren().clear();
+                celula.getChildren().add(fundo);
 
                 if (peca != null) {
-                    // Raio maior para o General
-                    double raio = peca.getTipo() == PecaTipo.GENERAL ? 28 : 22;
-                    Circle circulo = new Circle(raio);
+                    boolean ehBranco = peca.getJogador() == Jogador.BRANCO;
 
-                    // Lógica de cores baseada na sua solicitação: Branco/Marrom e Ouro/Prata
-                    if (peca.getJogador() == Jogador.BRANCO) {
-                        // Jogador BRANCO: Soldados Brancos, General Dourado
-                        if (peca.getTipo() == PecaTipo.SOLDADO) {
-                            circulo.setFill(Color.web("#F0F0F0")); // Branco Sujo (Off-White)
-                            circulo.setStroke(Color.DIMGRAY);
-                        } else { // General
-                            circulo.setFill(Color.web("#FFD700")); // Dourado
-                            circulo.setStroke(Color.web("#DAA520")); // Marrom Dourado
-                        }
+                    if (peca.getTipo() == PecaTipo.GENERAL) {
+                        Circle circulo = new Circle(28);
+                        circulo.setFill(ehBranco ? Color.BEIGE : Color.SIENNA);
+                        circulo.setStroke(ehBranco ? Color.DARKGOLDENROD : Color.DARKRED);
+                        circulo.setStrokeWidth(2);
+                        circulo.getStyleClass().add("piece");
+
+                        Polygon triangulo = new Polygon(
+                                0.0, -18.0,
+                                -14.0, 12.0,
+                                14.0, 12.0
+                        );
+                        triangulo.setFill(ehBranco ? Color.GOLD : Color.BLACK);
+                        triangulo.setStroke(ehBranco ? Color.BLACK : Color.WHITESMOKE);
+                        triangulo.setStrokeWidth(1.5);
+                        triangulo.getStyleClass().add("piece");
+
+                        celula.getChildren().addAll(circulo, triangulo);
+
                     } else {
-                        // Jogador PRETO (Oposição): Soldados Marrons, General Prateado
-                        if (peca.getTipo() == PecaTipo.SOLDADO) {
-                            circulo.setFill(Color.web("#A0522D")); // Marrom (Sienna)
-                            circulo.setStroke(Color.web("#5C3317"));
-                        } else { // General
-                            circulo.setFill(Color.web("#C0C0C0")); // Prata
-                            circulo.setStroke(Color.web("#696969")); // Cinza Escuro
-                        }
+                        Circle circulo = new Circle(25);
+                        circulo.setFill(ehBranco ? Color.BEIGE : Color.SIENNA);
+                        circulo.setStroke(ehBranco ? Color.DARKGOLDENROD : Color.DARKRED);
+                        circulo.setStrokeWidth(2);
+                        circulo.getStyleClass().add("piece");
+                        celula.getChildren().add(circulo);
                     }
-
-                    circulo.setStrokeWidth(2);
-
-                    celula.getChildren().add(circulo);
                 }
             }
         }
