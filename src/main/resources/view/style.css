@@ -1,0 +1,94 @@
+/* styles.css - JavaFX stylesheet for Latrunculo
+   Corrigido para cores hex e compatibilidade com JavaFX
+
+   Cores (hex codes):
+   BOARD = #FFE4C4   /* bisque */
+   BOARD_BORDER = rgba(0,0,0,0.45)
+   HIGHLIGHT = rgba(46,134,171,0.25)
+   SELECT_BORDER = #2E86AB
+   PIECE_WHITE_FILL = #F5F5DC
+   PIECE_WHITE_STROKE = #B8860B
+   PIECE_BROWN_FILL = #A0522D
+   PIECE_BROWN_STROKE = #8B0000
+   GENERAL_WHITE_TRIANGLE = #FFD700
+   GENERAL_BROWN_TRIANGLE = #000000
+*/
+
+.root {
+    -fx-font-family: "Segoe UI", "Arial";
+}
+
+.cell {
+    -fx-background-color: #FFE4C4;
+    -fx-border-color: rgba(0,0,0,0.45);
+    -fx-border-width: 1;
+    -fx-min-width: 60px;
+    -fx-min-height: 60px;
+    -fx-padding: 4px;
+}
+
+.cell:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 8, 0.0, 0, 2);
+}
+
+.cell.selected {
+    -fx-background-color: derive(#FFE4C4, -6%);
+    -fx-border-color: #2E86AB;
+    -fx-border-width: 2;
+    -fx-effect: innershadow(gaussian, rgba(46,134,171,0.12), 6, 0.0, 0, 2);
+}
+
+.cell.highlight {
+    -fx-background-color: rgba(46,134,171,0.25);
+    -fx-border-color: #2E86AB;
+    -fx-border-width: 2;
+}
+
+.cell.captured {
+    -fx-opacity: 0.35;
+}
+
+.piece {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.14), 6, 0.0, 0, 2);
+}
+
+.piece.white {
+    -fx-fill: #F5F5DC;
+    -fx-stroke: #B8860B;
+    -fx-stroke-width: 2;
+}
+
+.piece.brown {
+    -fx-fill: #A0522D;
+    -fx-stroke: #8B0000;
+    -fx-stroke-width: 2;
+}
+
+.piece.general {
+    -fx-stroke-width: 1.5;
+}
+
+.piece.white.general {
+    -fx-fill: #FFD700;
+    -fx-stroke: #000000;
+}
+
+.piece.brown.general {
+    -fx-fill: #000000;
+    -fx-stroke: #F5F5F5;
+}
+
+.grid-pane {
+    -fx-hgap: 2.0;
+    -fx-vgap: 2.0;
+}
+
+.label {
+    -fx-text-fill: #222222;
+}
+
+.button {
+    -fx-background-radius: 8;
+    -fx-padding: 8 12 8 12;
+}
