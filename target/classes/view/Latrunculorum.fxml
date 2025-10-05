@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+
+<BorderPane fx:controller="view.LatrunculoView" xmlns:fx="https://www.google.com/search?q=http://javafx.com/fxml/1" xmlns="https://www.google.com/search?q=http://javafx.com/javafx/21">
+    <center>
+        <GridPane fx:id="tabuleiroGrid" alignment="CENTER" hgap="2.0" vgap="2.0" style="-fx-background-color: #663300; -fx-padding: 10;">
+        </GridPane>
+    </center>
+    <right>
+        <VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-padding: 20; -fx-background-color: #f4f4f4;">
+            <children>
+                <Label text="STATUS DO JOGO" style="-fx-font-size: 16pt; -fx-font-weight: bold;" />
+                <Separator prefWidth="200.0" />
+
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="Fase:" />
+                        <Label fx:id="labelFase" text="---" style="-fx-font-size: 12pt;" />
+                    </children>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="Jogador Atual:" />
+                        <Label fx:id="labelJogadorAtual" text="---" style="-fx-font-size: 14pt; -fx-font-weight: bold;" />
+                    </children>
+                </HBox>
+
+                <Label text="Mensagem:" style="-fx-font-weight: bold;" />
+                <Label fx:id="labelMensagem" text="Aguardando início..." wrapText="true" />
+                <Separator prefWidth="200.0" />
+
+                <Button mnemonicParsing="false" onAction="#handleNovoJogo" maxWidth="1.7976931348623157E308" text="Novo Jogo" />
+                <Button mnemonicParsing="false" onAction="#handleDesfazer" maxWidth="1.7976931348623157E308" text="Desfazer Jogada" />
+                <Button mnemonicParsing="false" onAction="#handleAjuda" maxWidth="1.7976931348623157E308" text="Ajuda/Regras" />
+            </children>
+        </VBox>
+    </right>
+</BorderPane>
