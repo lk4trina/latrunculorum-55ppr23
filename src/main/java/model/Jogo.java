@@ -170,10 +170,19 @@ public class Jogo extends Observado<Jogo> {
     }
 
     private void verificarCondicaoDeVitoria() {
-        if (!podeMover(jogadorAtual) || !podeMover(jogadorAtual.opposite())) {
-            long pecasBrancas = tabuleiro.getGrid().values().stream().filter(p -> p.getJogador() == Jogador.BRANCO).count();
-            long pecasMarrom = tabuleiro.getGrid().values().stream().filter(p -> p.getJogador() == Jogador.MARROM).count();
+        long pecasBrancas = tabuleiro.getGrid().values().stream().filter(p -> p.getJogador() == Jogador.BRANCO).count();
+        long pecasMarrom = tabuleiro.getGrid().values().stream().filter(p -> p.getJogador() == Jogador.MARROM).count();
 
+        if (pecasBrancas <= 1) {
+            estado = Estado.VITORIA_MARROM;
+            return;
+        }
+        if (pecasMarrom <= 1) {
+            estado = Estado.VITORIA_BRANCO;
+            return;
+        }
+
+        if (!podeMover(jogadorAtual) || !podeMover(jogadorAtual.opposite())) {
             if (pecasBrancas > pecasMarrom) estado = Estado.VITORIA_BRANCO;
             else if (pecasMarrom > pecasBrancas) estado = Estado.VITORIA_MARROM;
             else estado = Estado.EMPATE;
