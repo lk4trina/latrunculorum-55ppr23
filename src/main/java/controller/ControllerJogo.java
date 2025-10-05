@@ -9,28 +9,31 @@ public class ControllerJogo {
         this.jogo = jogo;
     }
 
-    public void lugarPeca(int lin, int col, PecaTipo tipo) {
-        jogo.lugarPeca(new Posicao(lin, col), tipo);
+    public void reiniciarJogo() {
+        jogo.iniciarNovoJogo();
     }
 
-    public void printTabuleiro() {
-        jogo.getTabuleiro().exibirTabuleiro();
+    public void desfazerJogada() {
+        jogo.desfazerJogada();
+    }
+
+    public void lugarPeca(int lin, int col) {
+        jogo.lugarPeca(new Posicao(lin, col));
+    }
+
+    public void moverPeca(Posicao from, Posicao to) {
+        jogo.moverPeca(from, to);
+    }
+
+    public Jogo.Fase getFase() {
+        return jogo.getFase();
     }
 
     public Jogador getJogadorAtual() {
         return jogo.getJogadorAtual();
     }
 
-    public boolean ehFaseDeColocacao() {
-        return jogo.ehFaseDeColocacao();
-    }
-
-    public void iniciarJogo() {
-        jogo.notifObservadores(jogo);
-    }
-
-    public int getTamanhoTabuleiro() {
-        return jogo.getTabuleiro().getTamanho();
+    public Jogo getJogo() {
+        return jogo;
     }
 }
-

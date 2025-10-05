@@ -25,19 +25,20 @@ public class ViewFX extends Application {
 
         Scene scene = new Scene(root);
 
-        URL cssUrl = getClass().getResource("/view/styles.css");
-//        if (cssUrl != null) {
-//            scene.getStylesheets().add(cssUrl.toExternalForm());
-//        } else {
-//            System.err.println("Aviso: styles.css não encontrado em /view. Verifique src/main/resources/view/");
-//        }
+        URL cssUrl = getClass().getResource("/view/style.css");
+        if (cssUrl != null) {
+            scene.getStylesheets().add(cssUrl.toExternalForm());
+        } else {
+            System.err.println("Aviso: style.css nao encontrado.");
+        }
 
         primaryStage.setTitle("Latrunculo");
         primaryStage.setScene(scene);
         primaryStage.show();
 
         jogo.addObserver(view);
-        controller.iniciarJogo();
+        // A linha controller.iniciarJogo() foi removida pois o jogo ja inicia
+        // e notifica os observadores atraves do construtor de Jogo.
     }
 
     public static void main(String[] args) {
