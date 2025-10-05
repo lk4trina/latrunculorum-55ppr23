@@ -2,9 +2,9 @@ package model;
 
 public enum Jogador {
     BRANCO,
-    PRETO;
+    MARROM;
 
     public Jogador opposite() {
-        return this == BRANCO ? PRETO : BRANCO;
+        return this == BRANCO ? MARROM : BRANCO;
     }
 }
