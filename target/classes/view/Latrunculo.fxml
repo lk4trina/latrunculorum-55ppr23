@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+    <center>
+        <GridPane fx:id="tabuleiroGrid" alignment="CENTER" style="-fx-background-color: #8B4513;" />
+    </center>
+
+    <right>
+        <VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-padding: 20; -fx-background-color: #f4f4f4; -fx-min-width: 220;">
+            <children>
+                <Label text="STATUS DO JOGO" style="-fx-font-size: 16pt; -fx-font-weight: bold;" />
+                <Separator prefWidth="200.0" />
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <children>
+                        <Label text="Fase:" />
+                        <Label fx:id="labelFase" text="---" style="-fx-font-size: 12pt;" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <children>
+                        <Label text="Jogador Atual:" />
+                        <Label fx:id="labelJogadorAtual" text="---" style="-fx-font-size: 14pt; -fx-font-weight: bold;" />
+                    </children>
+                </HBox>
+                <Label text="Mensagem:" style="-fx-font-weight: bold;" />
+                <Label fx:id="labelMensagem" text="Aguardando inicio..." wrapText="true" />
+                <Separator prefWidth="200.0" />
+                <Button onAction="#handleNovoJogo" maxWidth="1.7976931348623157E308" text="Novo Jogo" />
+                <Button onAction="#handleDesfazer" maxWidth="1.7976931348623157E308" text="Desfazer Jogada" />
+                <Button onAction="#handleAjuda" maxWidth="1.7976931348623157E308" text="Ajuda/Regras" />
+                <Separator prefWidth="200.0" />
+                <VBox alignment="TOP_CENTER" spacing="5.0">
+                    <children>
+                        <Label text="Capturadas (Branco)" style="-fx-font-weight: bold;"/>
+                        <FlowPane fx:id="pecasCapturadasBranco" hgap="4" vgap="4" alignment="CENTER" />
+                    </children>
+                </VBox>
+                <VBox alignment="TOP_CENTER" spacing="5.0">
+                    <children>
+                        <Label text="Capturadas (Marrom)" style="-fx-font-weight: bold;"/>
+                        <FlowPane fx:id="pecasCapturadasMarrom" hgap="4" vgap="4" alignment="CENTER" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </right>
+</BorderPane>
