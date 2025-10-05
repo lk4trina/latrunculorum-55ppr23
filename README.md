@@ -52,7 +52,7 @@ Você pode executá-lo de duas formas:
 ## 👩‍💻 Desenvolvedoras
 
 - **Letícia Katrina** - Desenvolvedora de Software - [GitHub](https://github.com/lk4trina)
-- **Ana Paula** - Desenvolvedora de Software - [GitHub](https://github.com/kittycatgirl)
+- **Ana Paula** - Desenvolvedora de Software - [GitHub](https://github.com/nanapssz)
 
 ---
 
